@@ -11,7 +11,9 @@ extern char **environ;
 
 static BOOL enabled = YES;
 static NSString *debugserverPath = nil;
-static NSString * nsNotificationString = @"com.byteage.xcoderootdebug/preferences.changed";
+static NSString *systemDebugserverPath;
+typedef CFTypeRef AuthorizationRef;
+static NSString * nsNotificationString = @"com.test.xcoderootdebug/preferences.changed";
 static BOOL isRootUser = YES;
 
 static NSString* getDebugServerPath()  {
@@ -53,14 +55,9 @@ static void *make_sym_readable(void *ptr) {
 
 #pragma clang diagnostic pop
 
-typedef CFTypeRef AuthorizationRef;
-
 bool (*original_SMJobSubmit)(CFStringRef domain, CFDictionaryRef job, AuthorizationRef auth, CFErrorRef _Nullable *error);
-
-static NSString *systemDebugserverPath;
-
 bool hooked_SMJobSubmit(CFStringRef domain, CFDictionaryRef job, AuthorizationRef auth, CFErrorRef _Nullable *error) {
-	LOG(@"Enter hooked_SMJobSubmit %@", job);
+	LOG(@"进入 hooked_SMJobSubmit 原始参数: %@", job);
     
     if (getDebugServerPath() == nil) {
         LOG(@"未找到debugserver命令");
@@ -107,7 +104,7 @@ bool hooked_SMJobSubmit(CFStringRef domain, CFDictionaryRef job, AuthorizationRe
 			LOG(@"Now SMJobSubmit %@", newJobInfo);
 		}
 	}
-	LOG(@"New SMJobSubmit %@", newJobInfo);
+	LOG(@"新参数: %@", newJobInfo);
 	return original_SMJobSubmit(domain, (__bridge CFDictionaryRef)newJobInfo, auth, error);
 }
 
@@ -130,7 +127,7 @@ void new_SpringBoard_applicationDidFinishLaunching_(id _self, SEL sel, id applic
 }
 
 static __attribute__((constructor)) void dyld_init(int argc, char **argv, char **envp) {
-    LOG(@"hook success (%s = %d)", getprogname(), getpid());
+    LOG(@"hook success (%s = %d) !!!!!!!!!!!!!!!!!!!!!!!!!!!", getprogname(), getpid());
     if (getDebugServerPath() == nil) {
         LOG(@"未找到debugserver命令");
     }
