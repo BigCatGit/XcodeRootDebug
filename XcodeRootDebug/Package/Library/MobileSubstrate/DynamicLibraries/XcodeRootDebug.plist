@@ -4,11 +4,13 @@
 <dict>
 	<key>Filter</key>
 	<dict>
-		<key>Bundles</key>
+		<key>Executables</key>
 		<array>
 			<string>lockdownd</string>
+		</array>
+		<key>Bundles</key>
+		<array>
 			<string>com.apple.SpringBoard</string>
-			<string>com.apple.lockdownd</string>
 		</array>
 	</dict>
 </dict>
