@@ -1,6 +1,6 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import <Foundation/Foundation.h>
-//#import <UIKit/UIKit.h>
+#import <UIKit/UIKit.h>
 #import <Foundation/NSUserDefaults+Private.h>
 #include <unistd.h>
 #include <substrate.h>
@@ -111,23 +111,23 @@ bool hooked_SMJobSubmit(CFStringRef domain, CFDictionaryRef job, AuthorizationRe
 	return original_SMJobSubmit(domain, (__bridge CFDictionaryRef)newJobInfo, auth, error);
 }
 
-//void (* old_SpringBoard_applicationDidFinishLaunching_)(id _self, SEL sel, id application);
-//void new_SpringBoard_applicationDidFinishLaunching_(id _self, SEL sel, id application) {
-//    old_SpringBoard_applicationDidFinishLaunching_(_self, sel, application);
-//
-//    NSString* content = @"XCodeRootDebug设置成功";
-//    if (getDebugServerPath() == nil) {
-//        LOG(@"未找到debugserver命令");
-//        content = @"XCodeRootDebug未找到debugserver命令";
-//    }
-//
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-//        message:content
-//        delegate:nil
-//        cancelButtonTitle:@"确定"
-//        otherButtonTitles:nil];
-//    [alert show];
-//}
+void (* old_SpringBoard_applicationDidFinishLaunching_)(id _self, SEL sel, id application);
+void new_SpringBoard_applicationDidFinishLaunching_(id _self, SEL sel, id application) {
+    old_SpringBoard_applicationDidFinishLaunching_(_self, sel, application);
+
+    NSString* content = @"XCodeRootDebug设置成功";
+    if (getDebugServerPath() == nil) {
+        LOG(@"未找到debugserver命令");
+        content = @"XCodeRootDebug未找到debugserver命令";
+    }
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+        message:content
+        delegate:nil
+        cancelButtonTitle:@"确定"
+        otherButtonTitles:nil];
+    [alert show];
+}
 
 static __attribute__((constructor)) void dyld_init(int argc, char **argv, char **envp) {
     LOG(@"hook success (%s = %d)", getprogname(), getpid());
@@ -138,7 +138,7 @@ static __attribute__((constructor)) void dyld_init(int argc, char **argv, char *
     NSString* processName = [NSProcessInfo processInfo].processName;
     LOG(@"当前进程名: %@", processName);
     if ([processName isEqualToString:@"SpringBoard"]) {
-//        MSHookMessageEx(objc_getClass("SpringBoard"), @selector(applicationDidFinishLaunching:), (IMP)new_SpringBoard_applicationDidFinishLaunching_, (IMP*)&old_SpringBoard_applicationDidFinishLaunching_);
+        MSHookMessageEx(objc_getClass("SpringBoard"), @selector(applicationDidFinishLaunching:), (IMP)new_SpringBoard_applicationDidFinishLaunching_, (IMP*)&old_SpringBoard_applicationDidFinishLaunching_);
     } else if ([processName isEqualToString:@"lockdownd"]) {
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, notificationCallback, (CFStringRef)nsNotificationString, NULL, CFNotificationSuspensionBehaviorCoalesce);
         MSImageRef image = MSGetImageByName("/System/Library/PrivateFrameworks/ServiceManagement.framework/ServiceManagement");

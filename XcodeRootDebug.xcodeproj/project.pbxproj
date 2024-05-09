@@ -11,6 +11,7 @@
 		3F4937F92BECC08900611A08 /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F4937F82BECC08900611A08 /* CydiaSubstrate.framework */; };
 		3F49380D2BECC6A200611A08 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 3F49380C2BECC6A200611A08 /* Prefix.pch */; };
 		3F4938112BECC6CF00611A08 /* Tweak.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4938102BECC6CF00611A08 /* Tweak.m */; };
+		3F4938132BECCCD700611A08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F4938122BECCCD700611A08 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		3F49380E2BECC6BB00611A08 /* postinst */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = postinst; sourceTree = "<group>"; };
 		3F49380F2BECC6BB00611A08 /* postrm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = postrm; sourceTree = "<group>"; };
 		3F4938102BECC6CF00611A08 /* Tweak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweak.m; sourceTree = "<group>"; };
+		3F4938122BECCCD700611A08 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F4938132BECCCD700611A08 /* UIKit.framework in Frameworks */,
 				3F4937F72BECC08900611A08 /* Foundation.framework in Frameworks */,
 				3F4937F92BECC08900611A08 /* CydiaSubstrate.framework in Frameworks */,
 			);
@@ -60,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				3F4937F42BECC08900611A08 /* UIKit.framework */,
+				3F4938122BECCCD700611A08 /* UIKit.framework */,
 				3F4937F62BECC08900611A08 /* Foundation.framework */,
 				3F4937F82BECC08900611A08 /* CydiaSubstrate.framework */,
 			);
