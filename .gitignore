@@ -1,5 +1,7 @@
-
 *.deb
 *.zip
 *.dylib
 .DS_Store
+UserInterfaceState.xcuserstate
+Packages
+xcuserdata
