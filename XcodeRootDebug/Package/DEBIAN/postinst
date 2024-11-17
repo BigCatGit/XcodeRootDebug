@@ -2,5 +2,6 @@
 
 killall -9 lockdownd >/dev/null 2>&1
 echo "杀死进程 lockdownd"
+chmod +x /var/jb/bin/debugserver
 
 exit 0

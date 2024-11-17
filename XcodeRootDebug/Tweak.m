@@ -119,7 +119,7 @@ void new_SpringBoard_applicationDidFinishLaunching_(id _self, SEL sel, id applic
     }
 
     // 这个代码在ios16版本会崩溃, 有可能是没有UIAlertView类了
-    UIAlertController* ctlr = [UIAlertController alertControllerWithTitle:@"提示"
+    UIAlertController* ctlr = [UIAlertController alertControllerWithTitle:@"XCodeRootDebug提示"
                                                                   message:content
                                                            preferredStyle:UIAlertControllerStyleAlert];
 

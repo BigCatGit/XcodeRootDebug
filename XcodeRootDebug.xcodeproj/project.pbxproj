@@ -83,6 +83,7 @@
 		3F4937FB2BECC08900611A08 /* Package */ = {
 			isa = PBXGroup;
 			children = (
+				3FC084092CEA329400DEF047 /* bin */,
 				3F4937FC2BECC08900611A08 /* DEBIAN */,
 				3F4938032BECC08900611A08 /* Library */,
 			);
@@ -121,6 +122,13 @@
 				3F4938062BECC08900611A08 /* XcodeRootDebug.plist */,
 			);
 			path = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+		3FC084092CEA329400DEF047 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
