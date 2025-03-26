@@ -118,15 +118,15 @@ void new_SpringBoard_applicationDidFinishLaunching_(id _self, SEL sel, id applic
         content = @"XCodeRootDebug未找到debugserver命令";
     }
 
-    // 这个代码在ios16版本会崩溃, 有可能是没有UIAlertView类了
-    UIAlertController* ctlr = [UIAlertController alertControllerWithTitle:@"XCodeRootDebug提示"
-                                                                  message:content
-                                                           preferredStyle:UIAlertControllerStyleAlert];
-
-    [ctlr addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    }]];
-    UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
-    [keyWindow.rootViewController presentViewController:ctlr animated:YES completion:nil];
+//    // 这个代码在ios16版本会崩溃, 有可能是没有UIAlertView类了
+//    UIAlertController* ctlr = [UIAlertController alertControllerWithTitle:@"XCodeRootDebug提示"
+//                                                                  message:content
+//                                                           preferredStyle:UIAlertControllerStyleAlert];
+//
+//    [ctlr addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//    }]];
+//    UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
+//    [keyWindow.rootViewController presentViewController:ctlr animated:YES completion:nil];
 }
 
 static __attribute__((constructor)) void dyld_init(int argc, char **argv, char **envp) {
